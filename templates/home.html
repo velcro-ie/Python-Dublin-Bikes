@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset=utf-8 />
+    <meta name="Dublin Bikes" content="Dubin Bike Tracker">
+ 
+    <title>Dublin Bikes</title>
+    <!--[if IE]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <script src="http://maps.googleapis.com/maps/api/js"></script>
+    <!-- ><script src="jquery-2.2.2.min.js"></script> -->
+    <link href='https://fonts.googleapis.com/css?family=Nunito:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="/static/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/time.css">
+</head>
+
+<body>
+    <div class="wrap">
+        <header>
+<!--            DCC logo gotten from http://www.fringefest.com/support/sponsors-->
+            <img src="/static/imgs/logo-dcc.png">
+            <h1>dublinbikes</h1>
+<!--    Picture gotten from: http://logos.wikia.com/wiki/File:Dublinbikes.svg    -->
+            <img src="/static/imgs/logo.jpg">
+        </header>
+        
+        <div id="mainContent">
+        <div id="tab">
+            <ul><li>Select Time</li></ul>
+        </div>
+        
+        <form method="post" id="optionsForm" name="optionsForm" action="time">
+            <label>Day:</label>
+            <select id="day" name="day">
+                <option value="Monday">Monday</option>
+                <option value="Tuesday">Tuesday</option>
+                <option value="Wednesday">Wednesday</option>
+                <option value="Thursday">Thursday</option>
+                <option value="Friday">Friday</option>
+                <option value="Saturday">Saturday</option>
+                <option value="Sunday">Sunday</option>
+            </select> 
+            <label>Time:</label>
+            <input id="time" type=time min=00:00 max=23:30 step=1800 value=12:00 name="time">
+            <input type="submit" value="Go" class="submitBtn" >
+        </form>
+        
+        <div id="bottomTab">
+            <article>
+                <h2>Legend</h2>
+                <ul>
+                    <li>Availability</li>
+                    <li><img src="http://maps.google.com/mapfiles/ms/icons/green-dot.png">67% - 100%</li>
+                    <li><img src="http://maps.google.com/mapfiles/ms/icons/orange-dot.png">34% - 66%</li>
+                    <li><img src="http://maps.google.com/mapfiles/ms/icons/yellow-dot.png">1% - 33%</li>
+                    <li><img src="http://maps.google.com/mapfiles/ms/icons/red-dot.png">None</li>
+                </ul>
+            </article>
+        <div id="Map" style="width:75%;height:600px;"></div>
+        </div>
+        </div>
+    </div>
+    
+<script>
+    function initialize() {
+        var mapProp = {
+        	center:new google.maps.LatLng(53.3489345,-6.3058681),
+        	zoom:13,
+        	mapTypeId:google.maps.MapTypeId.ROADMAP
+        };
+        var map=new google.maps.Map(document.getElementById("Map"),mapProp);
+    }
+    
+    google.maps.event.addDomListener(window, 'load', initialize);
+    
+</script>
+
+</body>
+</html>
